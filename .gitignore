@@ -1,0 +1,16 @@
+# python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# virtual env
+.venv/
+venv/
+
+# data
+data/
+
+# OS & editor
+.DS_Store
+.vscode/
+.idea/
