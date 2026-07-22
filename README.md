@@ -1,14 +1,14 @@
 # Federated Learning with FedAvg (CIFAR-10)
 
-A simulation of **federated learning** — training a single shared model across multiple "clients," each with its own private slice of data, without ever pooling that data in one place. Each client trains locally, and only model updates (not raw data) get sent to a central server, which averages them together using the **FedAvg** algorithm. The result is served through a small Flask app that runs inference with the final trained model.
+A simulation of **federated learning** - training a single shared model across multiple "clients," each with its own private slice of data, without ever pooling that data in one place. Each client trains locally, and only model updates (not raw data) get sent to a central server, which averages them together using the **FedAvg** algorithm. The result is served through a small Flask app that runs inference with the final trained model.
 
-This mirrors how federated learning is used in the real world — e.g. keyboards on phones learning to predict text without your messages ever leaving your device.
+This mirrors how federated learning is used in the real world, e.g. keyboards on phones learning to predict text without your messages ever leaving your device.
 
 ## Why federated learning?
 
 Traditional ML training assumes all your data lives in one place. That's often not true, or not allowed: hospitals can't share patient records, phones shouldn't upload personal keystrokes, banks can't pool transaction data across institutions. Federated learning gets around this by moving the *model* to the data instead of the data to the model.
 
-This project simulates that setup on CIFAR-10, splitting the dataset into **non-IID** partitions across clients (i.e. each client sees a skewed, unbalanced subset of classes, not a random even split) — which is what makes federated learning hard in practice, since a client that's only ever seen 2 of 10 classes contributes a very biased update.
+This project simulates that setup on CIFAR-10, splitting the dataset into **non-IID** partitions across clients (i.e. each client sees a skewed, unbalanced subset of classes, not a random even split) which is what makes federated learning hard in practice, since a client that's only ever seen 2 of 10 classes contributes a very biased update.
 
 ## How it works
 
@@ -23,11 +23,11 @@ This project simulates that setup on CIFAR-10, splitting the dataset into **non-
                                                           Global model ─► Flask inference app
 ```
 
-1. **`data.py`** — downloads CIFAR-10 and splits it into non-IID partitions, one per simulated client
-2. **`model.py`** — defines the ResNet-18 architecture used by every client
-3. **`train.py`** — runs local training on each client, aggregates updates via FedAvg, and repeats over communication rounds; saves the global model + training logs
-4. **`graphs.py`** — turns the training logs into loss/accuracy plots
-5. **`app.py`** — a Flask app that loads the trained global model and serves predictions on uploaded images
+1. **`data.py`** - downloads CIFAR-10 and splits it into non-IID partitions, one per simulated client
+2. **`model.py`** - defines the ResNet-18 architecture used by every client
+3. **`train.py`** - runs local training on each client, aggregates updates via FedAvg, and repeats over communication rounds; saves the global model + training logs
+4. **`graphs.py`** - turns the training logs into loss/accuracy plots
+5. **`app.py`** - a Flask app that loads the trained global model and serves predictions on uploaded images
 
 ## Results
 
@@ -52,7 +52,7 @@ pip install -r requirements.txt
 ```
 
 ### Run the pipeline
-Run in order — each step produces something the next one needs:
+Run in order each step produces something the next one needs:
 
 ```bash
 python src/data.py      # download + partition CIFAR-10 across clients
